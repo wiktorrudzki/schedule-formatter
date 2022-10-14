@@ -1,0 +1,16 @@
+@import "../../app.scss";
+
+.template {
+  display: grid;
+  height: 50em;
+  width: 100%;
+  gap: 4px;
+  grid-template-columns: 1.5fr repeat(5, 1.5fr);
+  grid-template-rows: repeat(15, 1fr);
+  background-color: $primary-color;
+  border: 4px $primary-color solid;
+}
+
+.cell {
+    background-color: $background-color;
+}

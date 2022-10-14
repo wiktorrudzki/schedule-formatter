@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+.template {
+  display: grid;
+  height: 50em;
+  width: 100%;
+  gap: 4px;
+  grid-template-columns: 1.5fr repeat(5, 1.5fr);
+  grid-template-rows: repeat(15, 1fr);
+  background-color: #87cefa;
+  border: 4px #87cefa solid;
+}
+
+.cell {
+  background-color: #eef9fd;
+}/*# sourceMappingURL=template.css.map */
