@@ -1,3 +1,4 @@
+import { addHours, addMinutes, addRemaining } from "./createCells";
 import "./template.css";
 
 type Props = {
@@ -9,58 +10,37 @@ type Props = {
 const Template: React.FC<Props> = ({ rows, columns, daysOfWeek }) => {
   const grid = rows * columns;
 
-  const date = new Date("December 14, 2026 06:30:00");
+  const date = new Date("December 14, 2026 06:45:00");
+  const endDate = new Date("December 14, 2026 07:30:00");
   let hoursAndMinutes = date.getHours() + ":" + date.getMinutes();
-
-  function addHours(hours = 1) {
-    date.setTime(date.getTime() + hours * 60 * 60 * 1000);
-    return date.getHours() + ":" + date.getMinutes();
-  }
-
-  function addMinutes(minutes = 45) {
-    date.setMinutes(date.getMinutes() + minutes);
-
-    return date.getHours() + ":" + date.getMinutes();
-  }
-
-  function addRemaining() {
-    let hoursAndMinutesList = hoursAndMinutes.split(":");
-    hoursAndMinutesList = hoursAndMinutesList.map((element, index) => {
-      if (element.length === 1 && index === 0) {
-        return "0" + element;
-      } else if (element.length === 1 && index === 1) {
-        return element + "0";
-      } else return element;
-    });
-    return hoursAndMinutesList.join(":");
-  }
+  let endHoursAndMinutes = endDate.getHours() + ":" + endDate.getMinutes();
 
   return (
     <div className="template">
       {[...Array(grid)].map((e, i) => {
-        if (i === 0) {
-          return <div key={i} className="cell"></div>;
-        }
-
-        if (i < 6) {
+        if (i < columns) {
           return (
             <div key={i} className="cell">
-              {daysOfWeek[i - 1]}
+              {daysOfWeek[i]}
             </div>
           );
         }
 
-        if (i % 12 === 0) {
-          hoursAndMinutes = addMinutes();
-          hoursAndMinutes = addRemaining();
-        } else if (i % 6 === 0) {
-          hoursAndMinutes = addHours();
-          hoursAndMinutes = addRemaining();
+        if ((i % columns) * 2 === 0) {
+          hoursAndMinutes = addMinutes(date);
+          hoursAndMinutes = addRemaining(hoursAndMinutes);
+          endHoursAndMinutes = addMinutes(endDate);
+          endHoursAndMinutes = addRemaining(endHoursAndMinutes);
+        } else if (i % columns === 0) {
+          hoursAndMinutes = addHours(date);
+          hoursAndMinutes = addRemaining(hoursAndMinutes);
+          endHoursAndMinutes = addMinutes(endDate);
+          endHoursAndMinutes = addRemaining(endHoursAndMinutes);
         }
 
         return i % columns === 0 ? (
           <div key={i} className="cell">
-            {hoursAndMinutes}
+            {hoursAndMinutes} - {endHoursAndMinutes}
           </div>
         ) : (
           <div key={i} className="cell"></div>

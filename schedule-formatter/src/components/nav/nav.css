@@ -1,1 +1,91 @@
-/*# sourceMappingURL=nav.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fuzzy+Bubbles:wght@400;700&family=Grape+Nuts&family=Inter:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Neucha&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;600;700&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: #90aa86;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.nav {
+  height: 10vh;
+  width: 100%;
+  z-index: 1;
+}
+.nav .ul {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: row;
+  list-style: none;
+}
+
+.group-input {
+  font-weight: bold;
+  width: 10em;
+  background-color: #edf9fd;
+  border: 1px black solid;
+  border-radius: 5px;
+  padding: 0.5em 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.group-input-show {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+
+.group-input-btn {
+  height: 80%;
+  border: 1px solid black;
+  cursor: pointer;
+  background-image: linear-gradient(rgba(144, 170, 134, 0.8), rgba(144, 170, 134, 0.8));
+  border-radius: 5px;
+}
+.group-input-btn:hover {
+  background-image: linear-gradient(rgb(144, 170, 134), rgb(144, 170, 134));
+}
+.group-input-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 2px black;
+}
+
+.groups {
+  display: none;
+  width: 10em;
+  background-color: #edf9fd;
+  border: 1px black solid;
+  list-style: none;
+}
+
+.groups-show {
+  display: block;
+}
+
+.li {
+  padding: 0.5em;
+  width: 100%;
+  cursor: pointer;
+}
+.li:hover {
+  background-color: #c2ddf9;
+}
+
+.li:nth-child(n+2) {
+  border-top: 1px solid black;
+}/*# sourceMappingURL=nav.css.map */

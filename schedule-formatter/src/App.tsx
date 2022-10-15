@@ -1,14 +1,21 @@
 import Nav from "./components/nav";
 import Template from "./components/template";
-import "./app.css"
+import "./app.css";
 
 function App() {
-  const daysOfWeek = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek"];
+  const daysOfWeek = [
+    "Godzina",
+    "Poniedziałek",
+    "Wtorek",
+    "Środa",
+    "Czwartek",
+    "Piątek",
+  ];
 
   return (
-    <div className="App">
+    <div className="app">
       <Nav />
-      <Template rows={15} columns={6} daysOfWeek={daysOfWeek} />
+      <Template rows={17} columns={6} daysOfWeek={daysOfWeek} />
     </div>
   );
 }
