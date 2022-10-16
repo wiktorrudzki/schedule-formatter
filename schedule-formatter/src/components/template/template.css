@@ -88,4 +88,14 @@ body {
   .cell:nth-child(n+7) {
     font-size: 0.7em;
   }
+}
+@media (max-width: 624px) {
+  .cell:nth-child(n) {
+    font-size: 0.75em;
+    gap: 5px;
+  }
+  .cell:nth-child(n+7) {
+    font-size: 0.58em;
+    gap: 0;
+  }
 }/*# sourceMappingURL=template.css.map */

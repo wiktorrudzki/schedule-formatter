@@ -72,3 +72,15 @@
         font-size: .7em;
     }
 }
+
+@media (max-width: 624px) {
+    .cell:nth-child(n) {
+        font-size: .75em;
+        gap: 5px;
+    }
+
+    .cell:nth-child(n + 7) {
+        font-size: .58em;
+        gap: 0;
+    }
+}

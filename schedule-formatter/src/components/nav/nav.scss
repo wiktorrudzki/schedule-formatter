@@ -81,12 +81,13 @@ ul {
   .nav {
     .ul {
       @include flex-center(row, space-evenly, flex-start);
+      
     }
   }
 
   .group-input {
     width: 8em;
-    padding: 0.45em 0.72em;
+    padding: 0.4em 0.7em;
   }
 
   .groups {
@@ -103,10 +104,35 @@ ul {
 
   .group-input {
     width: 6em;
-    padding: 0.4em 0.65em;
+    padding: 0.3em 0.5em;
   }
 
   .groups {
     width: 6em;
+  }
+}
+
+@media (max-width: 624px) {
+  .nav {
+    .ul {
+      @include flex-center(row, space-between, flex-start);
+    }
+  }
+
+  .group-input {
+    width: 4.5em;
+    padding: 0.1em 0.3em;
+    font-size: .9em;
+  }
+
+  .groups {
+    width: 4.5em;
+  }
+
+  .group-input-btn {
+    transform: scale(0.75);
+    &:active {
+      transform: scale(0.7);
+    }
   }
 }
