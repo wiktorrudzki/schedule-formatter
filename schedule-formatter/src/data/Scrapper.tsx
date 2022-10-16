@@ -1,7 +1,7 @@
 import cheerio from "cheerio";
 
-export const getData = async () => {
-  const url = "https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/o30.html";
+export const getData = async (link: string) => {
+  const url = link;
 
   const response = await fetch(url);
   const body = await response.text();
@@ -58,8 +58,8 @@ export const getData = async () => {
   return data;
 };
 
-const Scrapper = async () => {
-  return await getData();
+const Scrapper = async (url: string) => {
+  return await getData(url);
 };
 
 export default Scrapper;

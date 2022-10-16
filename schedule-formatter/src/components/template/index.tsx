@@ -18,8 +18,9 @@ const Template: React.FC<Props> = ({
   columns,
   daysOfWeek,
   currentGroups,
-  currentGroupsDispatch,
 }) => {
+  const k1 = "https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/o29.html";
+  const k2 = "https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/o30.html";
   const grid = rows * columns;
   const [data, setData] = useState<string[]>([]);
   let dataToDisplay: string[] = [];
@@ -32,15 +33,30 @@ const Template: React.FC<Props> = ({
   let endHoursAndMinutes = endDate.getHours() + ":" + endDate.getMinutes();
 
   useEffect(() => {
-    getData().then((result) => {
-      setData(
-        result
-          .join()
-          .split(",")
-          .map((element) => element.trim())
-      );
-    });
-  }, []);
+    console.log("xd")
+    console.log(currentGroups.k)
+    if (currentGroups.k === "12K1") {
+      getData(k1).then((result) => {
+        setData(
+          result
+            .join()
+            .split(",")
+            .map((element) => element.trim())
+        );
+      });
+    } else {
+      getData(k2).then((result) => {
+        setData(
+          result
+            .join()
+            .split(",")
+            .map((element) => element.trim())
+        );
+      });
+    }
+  }, [currentGroups.k]);
+
+  console.log(data)
 
   dataToDisplay = dataFormatter(data, dataToDisplay);
 
