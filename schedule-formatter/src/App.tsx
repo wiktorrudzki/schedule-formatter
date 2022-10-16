@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="app">
       <Nav />
-      <Template rows={17} columns={6} daysOfWeek={daysOfWeek} />
+      <Template rows={15} columns={6} daysOfWeek={daysOfWeek} />
     </div>
   );
 }

@@ -10,30 +10,33 @@ const Items: React.FC<Props> = ({ groups }) => {
 
   return (
     <ul>
-      <div className={isHide ? "group-input" : "group-input group-input-show"}>
-        <span className="group-input-span">{currentChoice}</span>
-        <button
-          className="group-input-btn"
-          onClick={() => setIsHide((prev) => !prev)}
+        <div
+          className={isHide ? "group-input" : "group-input group-input-show"}
         >
-          &#9776;
-        </button>
-      </div>
-      <div className={isHide ? "groups" : "groups groups-show"}>
-        {groups.map((group) => {
-          return (
-            <li
-              onClick={() => {
-                setCurrentChoice(group);
-                setIsHide(true);
-              }}
-              className={isHide ? "li" : "li liShow"}
-            >
-              {group}
-            </li>
-          );
-        })}
-      </div>
+          <span className="group-input-span">{currentChoice}</span>
+          <button
+            className="group-input-btn"
+            onClick={() => setIsHide((prev) => !prev)}
+          >
+            &#9776;
+          </button>
+        </div>
+        <div className={isHide ? "groups" : "groups groups-show"}>
+          {groups.map((group) => {
+            return (
+              <li
+                key={group}
+                onClick={() => {
+                  setCurrentChoice(group);
+                  setIsHide(true);
+                }}
+                className={isHide ? "li" : "li liShow"}
+              >
+                {group}
+              </li>
+            );
+          })}
+        </div>
     </ul>
   );
 };

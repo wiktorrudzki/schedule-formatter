@@ -1,8 +1,3 @@
-export function addHours(date: Date, hours = 1) {
-  date.setTime(date.getTime() + hours * 60 * 60 * 1000);
-  return date.getHours() + ":" + date.getMinutes();
-}
-
 export function addMinutes(date: Date, minutes = 45) {
   date.setMinutes(date.getMinutes() + minutes);
 
