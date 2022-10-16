@@ -52,3 +52,23 @@
   @include flex-center;
   text-align: center;
 }
+
+@media (max-width: 1024px) {
+    .cell:nth-child(n) {
+        font-size: 1.2em;
+    }
+
+    .cell:nth-child(n + 7) {
+        font-size: .8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .cell:nth-child(n) {
+        font-size: .95em;
+    }
+
+    .cell:nth-child(n + 7) {
+        font-size: .7em;
+    }
+}

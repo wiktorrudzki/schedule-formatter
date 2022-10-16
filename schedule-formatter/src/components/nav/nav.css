@@ -92,4 +92,35 @@ ul {
 
 .li:nth-child(n+2) {
   border-top: 1px solid black;
+}
+
+@media (max-width: 1024px) {
+  .nav .ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  .group-input {
+    width: 8em;
+    padding: 0.45em 0.72em;
+  }
+  .groups {
+    width: 8em;
+  }
+}
+@media (max-width: 768px) {
+  .nav .ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .group-input {
+    width: 6em;
+    padding: 0.4em 0.65em;
+  }
+  .groups {
+    width: 6em;
+  }
 }/*# sourceMappingURL=nav.css.map */
