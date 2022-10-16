@@ -3,14 +3,23 @@ import { addMinutes, addRemaining } from "./createCells";
 import "./template.css";
 import { getData } from "../../data/Scrapper";
 import { dataFormatter } from "./dataFormatter";
+import { Actions, CurrentGroups } from "../nav/module";
 
 type Props = {
   rows: number;
   columns: number;
   daysOfWeek: string[];
+  currentGroups: CurrentGroups;
+  currentGroupsDispatch: React.Dispatch<Actions>;
 };
 
-const Template: React.FC<Props> = ({ rows, columns, daysOfWeek }) => {
+const Template: React.FC<Props> = ({
+  rows,
+  columns,
+  daysOfWeek,
+  currentGroups,
+  currentGroupsDispatch,
+}) => {
   const grid = rows * columns;
   const [data, setData] = useState<string[]>([]);
   let dataToDisplay: string[] = [];
@@ -66,6 +75,68 @@ const Template: React.FC<Props> = ({ rows, columns, daysOfWeek }) => {
         }
 
         if (i % columns !== 0) incrementer++;
+
+        if (dataToDisplay[incrementer] !== " zajecia dodatkowe ") {
+          if (dataToDisplay[incrementer]) {
+            dataToDisplay[incrementer] = dataToDisplay[incrementer]
+              .split("---")
+              .filter((element) => {
+                return (
+                  element.includes(`(${currentGroups.week})`) ||
+                  element.includes(`-${currentGroups.week}1`) ||
+                  element.includes(`-${currentGroups.week.toLowerCase()}1`) ||
+                  element.includes(`-${currentGroups.week}2`) ||
+                  element.includes(`-${currentGroups.week.toLowerCase()}2`)
+                );
+              })
+              .toString();
+          }
+
+          if (dataToDisplay[incrementer]) {
+            dataToDisplay[incrementer] = dataToDisplay[incrementer]
+              .split(",")
+              .filter((element) => {
+                if (element.includes(currentGroups.gl)) {
+                  return true;
+                } else if (element.includes("L0")) {
+                  return false;
+                } else {
+                  return true;
+                }
+              })
+              .toString();
+          }
+
+          if (dataToDisplay[incrementer]) {
+            dataToDisplay[incrementer] = dataToDisplay[incrementer]
+              .split(",")
+              .filter((element) => {
+                if (element.includes(currentGroups.gk)) {
+                  return true;
+                } else if (element.includes("K0")) {
+                  return false;
+                } else {
+                  return true;
+                }
+              })
+              .toString();
+          }
+
+          if (dataToDisplay[incrementer]) {
+            dataToDisplay[incrementer] = dataToDisplay[incrementer]
+              .split(",")
+              .filter((element) => {
+                if (element.includes(currentGroups.gp)) {
+                  return true;
+                } else if (element.includes("P0")) {
+                  return false;
+                } else {
+                  return true;
+                }
+              })
+              .toString();
+          }
+        }
 
         return i % columns === 0 ? (
           <div key={i} className="cell">

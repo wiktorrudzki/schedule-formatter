@@ -15,6 +15,8 @@ export const dataFormatter = (data: string[], dataToDisplay: string[]) => {
         element === "okienko"
       ) {
         dataToDisplay.push("break");
+      } else {
+        dataToDisplay.push("---")
       }
     }
   });

@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Actions, CurrentGroups } from "./module";
 
 type Props = {
   groups: string[];
+  currentGroups: CurrentGroups;
+  currentGroupsDispatch: React.Dispatch<Actions>;
+  type: "WEEK" | "K" | "GL" | "GK" | "GP";
 };
 
-const Items: React.FC<Props> = ({ groups }) => {
+const Items: React.FC<Props> = ({ groups, currentGroups, currentGroupsDispatch, type }) => {
   const [isHide, setIsHide] = useState(true);
   const [currentChoice, setCurrentChoice] = useState(groups[0]);
+
+  useEffect(() => {
+    currentGroupsDispatch({ type: type, newGroup: currentChoice })
+  
+    //eslint-disable-next-line
+  }, [currentChoice])
 
   return (
     <ul>
