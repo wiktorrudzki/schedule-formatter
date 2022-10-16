@@ -1,1 +1,1 @@
-# schuedule-formatter
+# schedule-formatter
