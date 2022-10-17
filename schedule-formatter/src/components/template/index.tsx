@@ -33,8 +33,6 @@ const Template: React.FC<Props> = ({
   let endHoursAndMinutes = endDate.getHours() + ":" + endDate.getMinutes();
 
   useEffect(() => {
-    console.log("xd")
-    console.log(currentGroups.k)
     if (currentGroups.k === "12K1") {
       getData(k1).then((result) => {
         setData(
@@ -55,8 +53,6 @@ const Template: React.FC<Props> = ({
       });
     }
   }, [currentGroups.k]);
-
-  console.log(data)
 
   dataToDisplay = dataFormatter(data, dataToDisplay);
 
