@@ -32,12 +32,14 @@ body {
 }
 
 ul {
+  width: 10em;
   padding: 0;
+  margin: 0;
 }
 
 .group-input {
   font-weight: bold;
-  width: 10em;
+  width: 100%;
   background-color: #edf9fd;
   border: 1px black solid;
   border-radius: 5px;
@@ -71,7 +73,7 @@ ul {
 
 .groups {
   display: none;
-  width: 10em;
+  width: 100%;
   background-color: #edf9fd;
   border: 1px black solid;
   list-style: none;
@@ -102,10 +104,9 @@ ul {
     flex-direction: row;
   }
   .group-input {
-    width: 8em;
     padding: 0.4em 0.7em;
   }
-  .groups {
+  ul {
     width: 8em;
   }
 }
@@ -117,10 +118,9 @@ ul {
     flex-direction: row;
   }
   .group-input {
-    width: 6em;
     padding: 0.3em 0.5em;
   }
-  .groups {
+  ul {
     width: 6em;
   }
 }
@@ -132,12 +132,14 @@ ul {
     flex-direction: row;
   }
   .group-input {
-    width: 4.5em;
     padding: 0.1em 0.3em;
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
   .groups {
-    width: 4.5em;
+    font-size: 0.8em;
+  }
+  ul {
+    width: 4.2em;
   }
   .group-input-btn {
     transform: scale(0.75);
