@@ -2,6 +2,7 @@ import cheerio from "cheerio";
 
 export const getData = async (link: string) => {
   const url = `https://cors-anywhere.herokuapp.com/${link}`;
+  // const url = link;
 
   const response = await fetch(url);
   const body = await response.text();
