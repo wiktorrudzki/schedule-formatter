@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { addMinutes, addRemaining } from "./createCells";
 import "./template.css";
-import { getData } from "../../data/Scrapper";
 import { dataFormatter } from "./dataFormatter";
 import { Actions, CurrentGroups } from "../nav/module";
+import axios from "axios";
 
 type Props = {
   rows: number;
@@ -19,8 +19,6 @@ const Template: React.FC<Props> = ({
   daysOfWeek,
   currentGroups,
 }) => {
-  const k1 = "https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/o29.html";
-  const k2 = "https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/o30.html";
   const grid = rows * columns;
   const [data, setData] = useState<string[]>([]);
   let dataToDisplay: string[] = [];
@@ -34,21 +32,21 @@ const Template: React.FC<Props> = ({
 
   useEffect(() => {
     if (currentGroups.k === "12K1") {
-      getData(k1).then((result) => {
+      axios.get("http://localhost:3001/api/get/12k1").then(({ data }) => {
         setData(
-          result
+          data
             .join()
             .split(",")
-            .map((element) => element.trim())
+            .map((element: string) => element.trim())
         );
       });
     } else {
-      getData(k2).then((result) => {
+      axios.get("http://localhost:3001/api/get/12k2").then(({ data }) => {
         setData(
-          result
+          data
             .join()
             .split(",")
-            .map((element) => element.trim())
+            .map((element: string) => element.trim())
         );
       });
     }

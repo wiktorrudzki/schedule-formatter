@@ -9,22 +9,8 @@ type Props = {
 };
 
 const Items: React.FC<Props> = ({ groups, currentGroups, currentGroupsDispatch, type }) => {
-  const myGroups = ["N", "12K2", "L04", "P02", "K02"];
-
   const [isHide, setIsHide] = useState(true);
   const [currentChoice, setCurrentChoice] = useState(groups[0]);
-
-  useEffect(() => {
-    groups.forEach(group => {
-      myGroups.forEach(myGroup => {
-        if (myGroup === group) {
-          setCurrentChoice(myGroup);
-          return;
-        }
-      })
-    })
-    //eslint-disable-next-line
-  }, [])
 
   useEffect(() => {
     currentGroupsDispatch({ type: type, newGroup: currentChoice })
