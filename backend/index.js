@@ -3,133 +3,36 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const request = require("request-promise");
 const cheerio = require("cheerio");
+const formatData = require("./formatData");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const routs = {
+const routes = {
   "12k1": "o29",
   "12k2": "o30",
 };
 
-app.get("/api/12k1", (req, res) => {
+app.get("/api/:id", (req, res) => {
+  let route;
+  switch (req.params.id) {
+    case "12k1":
+      route = routes["12k1"];
+      break;
+    case "12k2":
+      route = routes["12k2"];
+      break;
+    default:
+      throw new Error("not valid route for this api");
+  }
   request(
-    `https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/${routs["12k1"]}.html`,
+    `https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/${route}.html`,
     (err, response, html) => {
       if (!err && response.statusCode == 200) {
         let $ = cheerio.load(html);
-
-        const data = [""];
-
-        $("td.l").each((i, element) => {
-          if (element.children.length === 1) {
-            if (element.children[0].type === "text") {
-              if (element.children[0].data === "zajęcia dodatkowe") {
-                data.push("zajecia dodatkowe");
-              } else {
-                data.push("okienko");
-              }
-            }
-          }
-          element.children.forEach((x) => {
-            if (x.type === "tag") {
-              if (x.children[0]) {
-                if (x.children.length > 1) {
-                  if (x.children[0].type === "tag") {
-                    if (x.children[0].children[0].type === "text") {
-                      data.push(x.children[0].children[0].data);
-                    }
-                  }
-                  if (x.children[4].type === "tag") {
-                    if (x.children[4].children[0].type === "text") {
-                      data.push(x.children[4].children[0].data);
-                    }
-                  }
-                  return;
-                }
-                if (x.children[0].type === "tag") {
-                  if (x.children[0].children[0].type === "text") {
-                    data.push(x.children[0].children[0].data);
-                  }
-                } else if (x.children[0].type === "text") {
-                  if (x.children[0].data.includes("#")) return;
-                  data.push(x.children[0].data);
-                }
-              } else {
-                data.push("<br>");
-              }
-            } else if (x.type === "text") {
-              if (x.data.trim() === "-(P)" || x.data.trim() === "-(N)") {
-                data.push(x.data);
-              }
-            }
-          });
-        });
-        data.shift();
-        res.send(data);
-      } else {
-        res.send("failure");
-      }
-    }
-  );
-});
-
-app.get("/api/12k2", (req, res) => {
-  request(
-    `https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/${routs["12k2"]}.html`,
-    (err, response, html) => {
-      if (!err && response.statusCode == 200) {
-        let $ = cheerio.load(html);
-
-        const data = [""];
-
-        $("td.l").each((i, element) => {
-          if (element.children.length === 1) {
-            if (element.children[0].type === "text") {
-              if (element.children[0].data === "zajęcia dodatkowe") {
-                data.push("zajecia dodatkowe");
-              } else {
-                data.push("okienko");
-              }
-            }
-          }
-          element.children.forEach((x) => {
-            if (x.type === "tag") {
-              if (x.children[0]) {
-                if (x.children.length > 1) {
-                  if (x.children[0].type === "tag") {
-                    if (x.children[0].children[0].type === "text") {
-                      data.push(x.children[0].children[0].data);
-                    }
-                  }
-                  if (x.children[4].type === "tag") {
-                    if (x.children[4].children[0].type === "text") {
-                      data.push(x.children[4].children[0].data);
-                    }
-                  }
-                  return;
-                }
-                if (x.children[0].type === "tag") {
-                  if (x.children[0].children[0].type === "text") {
-                    data.push(x.children[0].children[0].data);
-                  }
-                } else if (x.children[0].type === "text") {
-                  if (x.children[0].data.includes("#")) return;
-                  data.push(x.children[0].data);
-                }
-              } else {
-                data.push("<br>");
-              }
-            } else if (x.type === "text") {
-              if (x.data.trim() === "-(P)" || x.data.trim() === "-(N)") {
-                data.push(x.data);
-              }
-            }
-          });
-        });
-        data.shift();
+        const data = formatData($);
         res.send(data);
       } else {
         res.send("failure");

@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import { Actions, CurrentGroups } from "./module";
+import { Actions } from "./module";
 
 type Props = {
   groups: string[];
-  currentGroups: CurrentGroups;
   currentGroupsDispatch: React.Dispatch<Actions>;
   type: "WEEK" | "K" | "GL" | "GK" | "GP";
 };
 
-const Items: React.FC<Props> = ({ groups, currentGroups, currentGroupsDispatch, type }) => {
+const Items: React.FC<Props> = ({ groups, currentGroupsDispatch, type }) => {
   const [isHide, setIsHide] = useState(true);
   const [currentChoice, setCurrentChoice] = useState(groups[0]);
 
