@@ -14,7 +14,7 @@ const routs = {
   "12k2": "o30",
 };
 
-app.get("/api/:id", (req, res) => {
+app.get("/api/12k1", (req, res) => {
   request(
     `https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/${routs["12k1"]}.html`,
     (err, response, html) => {
@@ -76,7 +76,7 @@ app.get("/api/:id", (req, res) => {
   );
 });
 
-app.get("/api/:id", (req, res) => {
+app.get("/api/12k2", (req, res) => {
   request(
     `https://podzial.mech.pk.edu.pl/stacjonarne/html/plany/${routs["12k2"]}.html`,
     (err, response, html) => {
@@ -138,4 +138,4 @@ app.get("/api/:id", (req, res) => {
   );
 });
 
-app.listen(process.env.PORT || 3001, () => {});
+app.listen(3001, () => {});

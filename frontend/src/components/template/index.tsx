@@ -32,7 +32,7 @@ const Template: React.FC<Props> = ({
 
   useEffect(() => {
     if (currentGroups.k === "12K1") {
-      axios.get("http://localhost:3001/api/get/12k1").then(({ data }) => {
+      axios.get("https://schedule-formatter.wiktorrudzki.pl/api/12k1").then(({ data }) => {
         setData(
           data
             .join()
@@ -41,7 +41,7 @@ const Template: React.FC<Props> = ({
         );
       });
     } else {
-      axios.get("http://localhost:3001/api/get/12k2").then(({ data }) => {
+      axios.get("https://schedule-formatter.wiktorrudzki.pl/api/12k2").then(({ data }) => {
         setData(
           data
             .join()
