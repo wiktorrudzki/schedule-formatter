@@ -24,26 +24,31 @@ const Nav: React.FC<Props> = ({ currentGroups, currentGroupsDispatch }) => {
           type="WEEK"
           groups={groups.week}
           currentGroupsDispatch={currentGroupsDispatch}
+          currentGroup={currentGroups.week}
         />
         <Items
           type="K"
           groups={groups.k}
           currentGroupsDispatch={currentGroupsDispatch}
+          currentGroup={currentGroups.k}
         />
         <Items
           type="GL"
           groups={groups.gl}
           currentGroupsDispatch={currentGroupsDispatch}
+          currentGroup={currentGroups.gl}
         />
         <Items
           type="GK"
           groups={groups.gk}
           currentGroupsDispatch={currentGroupsDispatch}
+          currentGroup={currentGroups.gk}
         />
         <Items
           type="GP"
           groups={groups.gp}
           currentGroupsDispatch={currentGroupsDispatch}
+          currentGroup={currentGroups.gp}
         />
       </ul>
     </nav>

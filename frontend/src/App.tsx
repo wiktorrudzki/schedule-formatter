@@ -1,10 +1,13 @@
 import { useReducer } from "react";
+import Cookies from "universal-cookie";
 import Nav from "./components/nav";
 import Template from "./components/template";
 import "./app.css";
 import { Actions, CurrentGroups } from "./components/nav/module";
 
 function App() {
+  const cookies = new Cookies();
+
   const daysOfWeek = [
     "Godzina",
     "Poniedziałek",
@@ -40,11 +43,11 @@ function App() {
   };
 
   const [currentGroups, currentGroupsDispatch] = useReducer(reducer, {
-    week: groups.week[0],
-    k: groups.k[0],
-    gl: groups.gl[0],
-    gk: groups.gk[0],
-    gp: groups.gp[0],
+    week: cookies.get("WEEK"),
+    k: cookies.get("K"),
+    gl: cookies.get("GL"),
+    gk: cookies.get("GK"),
+    gp: cookies.get("GP"),
   });
 
   return (
