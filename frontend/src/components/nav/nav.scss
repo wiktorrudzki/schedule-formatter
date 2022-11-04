@@ -1,0 +1,141 @@
+@import "../../app.scss";
+
+.nav {
+  height: 10vh;
+  width: 100%;
+  z-index: 1;
+  .ul {
+    width: 100%;
+    @include flex-center(row, space-around, flex-start);
+    list-style: none;
+  }
+}
+
+ul {
+  width: 10em;
+  padding: 0;
+  margin: 0;
+}
+
+.group-input {
+  font-weight: bold;
+  width: 100%;
+  background-color: $background-color;
+  border: 1px black solid;
+  border-radius: 5px;
+  padding: 0.5em 0.8em;
+  @include flex-center(row, space-between);
+}
+
+.group-input-show {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+
+.group-input-btn {
+  height: 80%;
+  border: 1px solid black;
+  cursor: pointer;
+  background-image: linear-gradient(
+    rgba(144, 170, 134, 0.8),
+    rgba(144, 170, 134, 0.8)
+  );
+  border-radius: 5px;
+  &:hover {
+    background-image: linear-gradient(
+      rgba(144, 170, 134, 1),
+      rgba(144, 170, 134, 1)
+    );
+  }
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 2px black;
+  }
+}
+
+.groups {
+  display: none;
+  width: 100%;
+  background-color: $background-color;
+  border: 1px black solid;
+  list-style: none;
+}
+
+.groups-show {
+  display: block;
+}
+
+.li {
+  padding: 0.5em;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: $sky-blue;
+  }
+}
+
+.li:nth-child(n + 2) {
+  border-top: 1px solid black;
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    .ul {
+      @include flex-center(row, space-evenly, flex-start);
+      
+    }
+  }
+
+  .group-input {
+    padding: 0.4em 0.7em;
+  }
+
+  ul {
+    width: 8em;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    .ul {
+      @include flex-center(row, space-between, flex-start);
+    }
+  }
+
+  .group-input {
+    padding: 0.3em 0.5em;
+  }
+
+  ul {
+    width: 6em;
+  }
+}
+
+@media (max-width: 624px) {
+  .nav {
+    .ul {
+      @include flex-center(row, space-between, flex-start);
+    }
+  }
+
+  .group-input {
+    padding: 0.1em 0.3em;
+    font-size: .8em;
+  }
+
+  .groups {
+    font-size: .8em;
+  }
+
+  ul {
+    width: 4.2em
+  }
+
+  .group-input-btn {
+    transform: scale(0.75);
+    &:active {
+      transform: scale(0.7);
+    }
+  }
+}
