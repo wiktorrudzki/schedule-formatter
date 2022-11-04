@@ -43,17 +43,26 @@ function App() {
   };
 
   const [currentGroups, currentGroupsDispatch] = useReducer(reducer, {
-    week: cookies.get("WEEK"),
-    k: cookies.get("K"),
-    gl: cookies.get("GL"),
-    gk: cookies.get("GK"),
-    gp: cookies.get("GP"),
+    week: cookies.get("WEEK") !== "undefined" ? cookies.get("WEEK") : "N",
+    k: cookies.get("K") !== "undefined" ? cookies.get("K") : "12K2",
+    gl: cookies.get("GL") !== "undefined" ? cookies.get("GL") : "L04",
+    gk: cookies.get("GK") !== "undefined" ? cookies.get("GK") : "K02",
+    gp: cookies.get("GP") !== "undefined" ? cookies.get("GP") : "P02",
   });
 
   return (
     <div className="app">
-      <Nav currentGroups={currentGroups} currentGroupsDispatch={currentGroupsDispatch} />
-      <Template rows={15} columns={6} daysOfWeek={daysOfWeek} currentGroups={currentGroups} currentGroupsDispatch={currentGroupsDispatch} />
+      <Nav
+        currentGroups={currentGroups}
+        currentGroupsDispatch={currentGroupsDispatch}
+      />
+      <Template
+        rows={15}
+        columns={6}
+        daysOfWeek={daysOfWeek}
+        currentGroups={currentGroups}
+        currentGroupsDispatch={currentGroupsDispatch}
+      />
     </div>
   );
 }
