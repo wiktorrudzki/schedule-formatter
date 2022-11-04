@@ -43,11 +43,26 @@ function App() {
   };
 
   const [currentGroups, currentGroupsDispatch] = useReducer(reducer, {
-    week: cookies.get("WEEK") !== "undefined" ? cookies.get("WEEK") : "N",
-    k: cookies.get("K") !== "undefined" ? cookies.get("K") : "12K2",
-    gl: cookies.get("GL") !== "undefined" ? cookies.get("GL") : "L04",
-    gk: cookies.get("GK") !== "undefined" ? cookies.get("GK") : "K02",
-    gp: cookies.get("GP") !== "undefined" ? cookies.get("GP") : "P02",
+    week:
+      cookies.get("WEEK") && cookies.get("WEEK") !== "undefined"
+        ? cookies.get("WEEK")
+        : "N",
+    k:
+      cookies.get("K") && cookies.get("K") !== "undefined"
+        ? cookies.get("K")
+        : "12K2",
+    gl:
+      cookies.get("GL") && cookies.get("GL") !== "undefined"
+        ? cookies.get("GL")
+        : "L04",
+    gk:
+      cookies.get("GK") && cookies.get("GK") !== "undefined"
+        ? cookies.get("GK")
+        : "K02",
+    gp:
+      cookies.get("GP") && cookies.get("GP") !== "undefined"
+        ? cookies.get("GP")
+        : "P02",
   });
 
   return (

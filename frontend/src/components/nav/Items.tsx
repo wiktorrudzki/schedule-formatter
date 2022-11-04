@@ -20,8 +20,14 @@ const Items: React.FC<Props> = ({
 
   useEffect(() => {
     const cookies = new Cookies();
+    const date = new Date();
 
-    cookies.set(type, currentChoice, { path: "/" });
+    date.setFullYear(date.getFullYear() + 1);
+
+    cookies.set(type, currentChoice, {
+      path: "/",
+      expires: date,
+    });
 
     currentGroupsDispatch({ type: type, newGroup: currentChoice });
 
