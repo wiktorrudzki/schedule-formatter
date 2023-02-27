@@ -2,23 +2,18 @@ import { useEffect, useState } from "react";
 import { addMinutes, addRemaining } from "./createCells";
 import "./template.css";
 import { dataFormatter } from "./dataFormatter";
-import { Actions, CurrentGroups } from "../nav/module";
 import axios from "axios";
+import useGroups from "../../hooks/useGroups";
+import { daysOfWeek } from "../../data/days";
 
 type Props = {
   rows: number;
   columns: number;
-  daysOfWeek: string[];
-  currentGroups: CurrentGroups;
-  currentGroupsDispatch: React.Dispatch<Actions>;
 };
 
-const Template: React.FC<Props> = ({
-  rows,
-  columns,
-  daysOfWeek,
-  currentGroups,
-}) => {
+const Template: React.FC<Props> = ({ rows, columns }) => {
+  const [currentGroups] = useGroups();
+
   const grid = rows * columns;
   const [data, setData] = useState<string[]>([]);
   let dataToDisplay: string[] = [];
@@ -32,7 +27,7 @@ const Template: React.FC<Props> = ({
 
   useEffect(() => {
     if (currentGroups.k === "12K1") {
-      axios.get("https://schedule-formatter.wiktorrudzki.pl/api/12k1").then(({ data }) => {
+      axios.get(process.env.REACT_APP_API_URL + "12k1").then(({ data }) => {
         setData(
           data
             .join()
@@ -41,7 +36,7 @@ const Template: React.FC<Props> = ({
         );
       });
     } else {
-      axios.get("https://schedule-formatter.wiktorrudzki.pl/api/12k2").then(({ data }) => {
+      axios.get(process.env.REACT_APP_API_URL + "12k2").then(({ data }) => {
         setData(
           data
             .join()

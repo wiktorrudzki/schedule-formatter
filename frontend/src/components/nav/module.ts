@@ -1,9 +1,6 @@
-export type Actions =
-  | { type: "WEEK"; newGroup: string}
-  | { type: "K"; newGroup: string }
-  | { type: "GL"; newGroup: string }
-  | { type: "GK"; newGroup: string }
-  | { type: "GP"; newGroup: string };
+import { Groups } from "../../types";
+
+export type Actions = { type: keyof Groups; newGroup: string };
 
 export type CurrentGroups = {
   week: string;

@@ -1,22 +1,16 @@
 import Cookies from "universal-cookie";
 import { useState, useEffect } from "react";
-import { Actions } from "./module";
+import { Groups } from "../../types";
+import useGroups from "../../hooks/useGroups";
 
 type Props = {
+  type: keyof Groups;
   groups: string[];
-  currentGroupsDispatch: React.Dispatch<Actions>;
-  type: "WEEK" | "K" | "GL" | "GK" | "GP";
-  currentGroup: string;
 };
 
-const Items: React.FC<Props> = ({
-  groups,
-  currentGroupsDispatch,
-  type,
-  currentGroup,
-}) => {
+function Items({ groups, type }: Props) {
   const [isHide, setIsHide] = useState(true);
-  const [currentChoice, setCurrentChoice] = useState(currentGroup);
+  const [currentGroups, changeCurrentGroup] = useGroups();
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -24,20 +18,18 @@ const Items: React.FC<Props> = ({
 
     date.setFullYear(date.getFullYear() + 1);
 
-    cookies.set(type, currentChoice, {
+    cookies.set(type, currentGroups[type], {
       path: "/",
       expires: date,
     });
 
-    currentGroupsDispatch({ type: type, newGroup: currentChoice });
-
     //eslint-disable-next-line
-  }, [currentChoice]);
+  }, [currentGroups[type]]);
 
   return (
     <ul>
       <div className={isHide ? "group-input" : "group-input group-input-show"}>
-        <span className="group-input-span">{currentChoice}</span>
+        <span className="group-input-span">{currentGroups[type]}</span>
         <button
           className="group-input-btn"
           onClick={() => setIsHide((prev) => !prev)}
@@ -51,7 +43,7 @@ const Items: React.FC<Props> = ({
             <li
               key={group}
               onClick={() => {
-                setCurrentChoice(group);
+                changeCurrentGroup(type, group);
                 setIsHide(true);
               }}
               className={isHide ? "li" : "li liShow"}
@@ -63,6 +55,6 @@ const Items: React.FC<Props> = ({
       </div>
     </ul>
   );
-};
+}
 
 export default Items;

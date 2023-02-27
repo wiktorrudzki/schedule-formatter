@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const routes = {
-  "12k1": "o29",
-  "12k2": "o30",
+  "12k1": "o24",
+  "12k2": "o25",
 };
 
 app.get("/api/:id", (req, res) => {
