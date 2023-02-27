@@ -5,6 +5,8 @@ import { dataFormatter } from "./dataFormatter";
 import axios from "axios";
 import useGroups from "../../hooks/useGroups";
 import { daysOfWeek } from "../../data/days";
+import HourCell from "./components/HourCell";
+import CasualCell from "./components/CasualCell";
 
 type Props = {
   rows: number;
@@ -14,7 +16,6 @@ type Props = {
 const Template: React.FC<Props> = ({ rows, columns }) => {
   const [currentGroups] = useGroups();
 
-  const grid = rows * columns;
   const [data, setData] = useState<string[]>([]);
   let dataToDisplay: string[] = [];
   let incrementer = -1;
@@ -26,8 +27,9 @@ const Template: React.FC<Props> = ({ rows, columns }) => {
   let endHoursAndMinutes = endDate.getHours() + ":" + endDate.getMinutes();
 
   useEffect(() => {
-    if (currentGroups.k === "12K1") {
-      axios.get(process.env.REACT_APP_API_URL + "12k1").then(({ data }) => {
+    axios
+      .get(process.env.REACT_APP_API_URL + currentGroups.k)
+      .then(({ data }) => {
         setData(
           data
             .join()
@@ -35,23 +37,13 @@ const Template: React.FC<Props> = ({ rows, columns }) => {
             .map((element: string) => element.trim())
         );
       });
-    } else {
-      axios.get(process.env.REACT_APP_API_URL + "12k2").then(({ data }) => {
-        setData(
-          data
-            .join()
-            .split(",")
-            .map((element: string) => element.trim())
-        );
-      });
-    }
   }, [currentGroups.k]);
 
   dataToDisplay = dataFormatter(data, dataToDisplay);
 
   return (
     <div className="template">
-      {[...Array(grid)].map((e, i) => {
+      {[...Array(rows * columns)].map((e, i) => {
         if (i < columns) {
           return (
             <div key={i} className="cell">
@@ -101,39 +93,17 @@ const Template: React.FC<Props> = ({ rows, columns }) => {
             dataToDisplay[incrementer] = dataToDisplay[incrementer]
               .split(",")
               .filter((element) => {
-                if (element.includes(currentGroups.gl)) {
+                if (
+                  element.includes(currentGroups.gl) ||
+                  element.includes(currentGroups.gk) ||
+                  element.includes(currentGroups.gp)
+                ) {
                   return true;
-                } else if (element.includes("L0")) {
-                  return false;
-                } else {
-                  return true;
-                }
-              })
-              .toString();
-          }
-
-          if (dataToDisplay[incrementer]) {
-            dataToDisplay[incrementer] = dataToDisplay[incrementer]
-              .split(",")
-              .filter((element) => {
-                if (element.includes(currentGroups.gk)) {
-                  return true;
-                } else if (element.includes("K0")) {
-                  return false;
-                } else {
-                  return true;
-                }
-              })
-              .toString();
-          }
-
-          if (dataToDisplay[incrementer]) {
-            dataToDisplay[incrementer] = dataToDisplay[incrementer]
-              .split(",")
-              .filter((element) => {
-                if (element.includes(currentGroups.gp)) {
-                  return true;
-                } else if (element.includes("P0")) {
+                } else if (
+                  element.includes("L0") ||
+                  element.includes("K0") ||
+                  element.includes("P0")
+                ) {
                   return false;
                 } else {
                   return true;
@@ -144,15 +114,17 @@ const Template: React.FC<Props> = ({ rows, columns }) => {
         }
 
         return i % columns === 0 ? (
-          <div key={i} className="cell">
-            {hoursAndMinutes} - {endHoursAndMinutes}
-          </div>
+          <HourCell
+            hoursAndMinutes={hoursAndMinutes}
+            endHoursAndMinutes={endHoursAndMinutes}
+            i={i}
+          />
         ) : (
-          <div key={i} className="cell">
-            {dataToDisplay[incrementer] === " okienko "
-              ? ""
-              : dataToDisplay[incrementer]}
-          </div>
+          <CasualCell
+            incrementer={incrementer}
+            i={i}
+            dataToDisplay={dataToDisplay}
+          />
         );
       })}
     </div>

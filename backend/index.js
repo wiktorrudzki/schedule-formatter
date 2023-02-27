@@ -21,10 +21,10 @@ const routes = {
 app.get("/api/:id", (req, res) => {
   let route;
   switch (req.params.id) {
-    case "12k1":
+    case "12K1":
       route = routes["12k1"];
       break;
-    case "12k2":
+    case "12K2":
       route = routes["12k2"];
       break;
     default:
