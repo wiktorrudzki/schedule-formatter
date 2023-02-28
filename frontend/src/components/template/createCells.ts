@@ -1,17 +1,16 @@
-export function addMinutes(date: Date, minutes = 45) {
-  date.setMinutes(date.getMinutes() + minutes);
+export const addMinutes = (date: Date, minutes = 45) =>
+  new Date(date.setMinutes(date.getMinutes() + minutes)).getHours() +
+  ":" +
+  date.getMinutes();
 
-  return date.getHours() + ":" + date.getMinutes();
-}
-
-export function addRemaining(hoursAndMinutes: string) {
-  let hoursAndMinutesList = hoursAndMinutes.split(":");
-  hoursAndMinutesList = hoursAndMinutesList.map((element, index) => {
-    if (element.length === 1 && index === 0) {
-      return "0" + element;
-    } else if (element.length === 1 && index === 1) {
-      return element + "0";
-    } else return element;
-  });
-  return hoursAndMinutesList.join(":");
-}
+export const addRemaining = (hoursAndMinutes: string) =>
+  hoursAndMinutes
+    .split(":")
+    .map((element, index) =>
+      element.length === 1 && index === 0
+        ? "0" + element
+        : element.length === 1 && index === 1
+        ? element + "0"
+        : element
+    )
+    .join(":");

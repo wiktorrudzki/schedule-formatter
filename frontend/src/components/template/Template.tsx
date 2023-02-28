@@ -5,8 +5,7 @@ import { dataFormatter } from "./dataFormatter";
 import axios from "axios";
 import useGroups from "../../hooks/useGroups";
 import { daysOfWeek } from "../../data/days";
-import HourCell from "./components/HourCell";
-import CasualCell from "./components/CasualCell";
+import { HourCell, CasualCell } from "./components";
 
 type Props = {
   rows: number;
@@ -92,23 +91,17 @@ const Template: React.FC<Props> = ({ rows, columns }) => {
           if (dataToDisplay[incrementer]) {
             dataToDisplay[incrementer] = dataToDisplay[incrementer]
               .split(",")
-              .filter((element) => {
-                if (
+              .filter(
+                (element) =>
                   element.includes(currentGroups.gl) ||
                   element.includes(currentGroups.gk) ||
-                  element.includes(currentGroups.gp)
-                ) {
-                  return true;
-                } else if (
-                  element.includes("L0") ||
-                  element.includes("K0") ||
-                  element.includes("P0")
-                ) {
-                  return false;
-                } else {
-                  return true;
-                }
-              })
+                  element.includes(currentGroups.gp) ||
+                  !(
+                    element.includes("L0") ||
+                    element.includes("K0") ||
+                    element.includes("P0")
+                  )
+              )
               .toString();
           }
         }

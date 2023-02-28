@@ -1,5 +1,4 @@
-import Nav from "./components/nav";
-import Template from "./components/template";
+import { Nav, Template } from "./components";
 import "./app.css";
 import GroupsProvider from "./hooks/GroupsProvider";
 

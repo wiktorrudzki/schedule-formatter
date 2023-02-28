@@ -1,23 +1,17 @@
+const checkFreeTime = (element: string) =>
+  ["zajecia dodatkowe", "okienko"].some((e) => e === element);
+
 export const dataFormatter = (data: string[], dataToDisplay: string[]) => {
   data.forEach((element, index) => {
     if (element === "<br>") return;
     dataToDisplay.push(element);
     if (
-      element.slice(-2) === "-p" ||
-      element.slice(-2) === "-n" ||
-      element.slice(-2) === "-L" ||
-      element === "zajecia dodatkowe" ||
-      element === "okienko"
+      ["-p", "-n", "-L"].some((e) => e === element.slice(-2)) ||
+      checkFreeTime(element)
     ) {
-      if (
-        data[index + 1] !== "<br>" ||
-        element === "zajecia dodatkowe" ||
-        element === "okienko"
-      ) {
-        dataToDisplay.push("break");
-      } else {
-        dataToDisplay.push("---")
-      }
+      data[index + 1] !== "<br>" || checkFreeTime(element)
+        ? dataToDisplay.push("break")
+        : dataToDisplay.push("---");
     }
   });
 
