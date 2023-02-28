@@ -5,7 +5,15 @@ type Props = {
 };
 
 const CasualCell = ({ dataToDisplay, incrementer, i }: Props) => (
-  <div key={i} className="cell">
+  <div
+    key={i}
+    className="cell"
+    style={
+      dataToDisplay[incrementer] && dataToDisplay[incrementer].includes(" W ")
+        ? { backgroundColor: "#FFCCCB" }
+        : {}
+    }
+  >
     {dataToDisplay[incrementer] === " okienko "
       ? ""
       : dataToDisplay[incrementer]}

@@ -76,15 +76,17 @@ const Template: React.FC<Props> = ({ rows, columns }) => {
           if (dataToDisplay[incrementer]) {
             dataToDisplay[incrementer] = dataToDisplay[incrementer]
               .split("---")
-              .filter((element) => {
-                return (
+              .filter(
+                (element) =>
                   element.includes(`(${currentGroups.week})`) ||
+                  element.includes(`(${currentGroups.week.toLowerCase()})`) ||
+                  element.includes(`-${currentGroups.week}`) ||
+                  element.includes(`-${currentGroups.week.toLowerCase()}`) ||
                   element.includes(`-${currentGroups.week}1`) ||
                   element.includes(`-${currentGroups.week.toLowerCase()}1`) ||
                   element.includes(`-${currentGroups.week}2`) ||
                   element.includes(`-${currentGroups.week.toLowerCase()}2`)
-                );
-              })
+              )
               .toString();
           }
 
