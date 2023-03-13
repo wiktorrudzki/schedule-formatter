@@ -1,15 +1,15 @@
 import { groups } from "../../data/groups";
 import "./nav.css";
-import { NavMenu } from "./components";
+import Select from "./Select";
 
 const Nav = () => (
   <nav className="nav">
     <ul className="ul">
-      <NavMenu type="week" groups={groups.week} />
-      <NavMenu type="k" groups={groups.k} />
-      <NavMenu type="gl" groups={groups.gl} />
-      <NavMenu type="gk" groups={groups.gk} />
-      <NavMenu type="gp" groups={groups.gp} />
+      <Select groups={groups.week} type="week" />
+      <Select groups={groups.k} type="k" />
+      <Select groups={groups.gl} type="gl" />
+      <Select groups={groups.gk} type="gk" />
+      <Select groups={groups.gp} type="gp" />
     </ul>
   </nav>
 );
