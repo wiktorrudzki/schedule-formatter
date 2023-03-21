@@ -28,7 +28,9 @@ const Select = ({ groups, type }: Props) => {
   return (
     <select onChange={(e) => changeCurrentGroup(type, e.target.value)}>
       {groups.map((group) => (
-        <option key={group}>{group}</option>
+        <option key={group} selected={group === currentGroups[type]}>
+          {group}
+        </option>
       ))}
     </select>
   );
