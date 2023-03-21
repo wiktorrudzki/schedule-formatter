@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fuzzy+Bubbles:wght@400;700&family=Grape+Nuts&family=Inter:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Neucha&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;600;700&display=swap");
+
+$primary-color: #87cefa;
+$background-color: #edf9fd;
+$font-color: #000000;
+$sky-blue: #c2ddf9;
+$cold-blue: #5ca1a9;
+$white: #ffffff;
+$green: #90aa86;
+
+@mixin flex-center(
+  $direction: row,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $direction;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: $green;
+}
+
+.app {
+  @include flex-center(column);
+}

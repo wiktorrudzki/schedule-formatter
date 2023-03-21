@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fuzzy+Bubbles:wght@400;700&family=Grape+Nuts&family=Inter:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Neucha&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;600;700&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: #90aa86;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.template {
+  display: grid;
+  width: 100%;
+  padding: 0;
+  grid-template-columns: 1.5fr repeat(5, 1.5fr);
+  grid-template-rows: repeat(15, 1fr);
+  margin: 0 1em;
+  background: #edf9fd;
+}
+
+.cell:nth-child(n) {
+  background-color: #5ca1a9;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-top: 8px;
+}
+
+.cell:nth-child(n + 7) {
+  margin-left: 4px;
+  margin-right: 4px;
+  border-bottom: 2px dotted #5ca1a9;
+  background-color: #c2ddf9;
+  font-weight: normal;
+  font-size: 0.9em;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.cell:nth-child(n + 13) {
+  margin-top: 0;
+  border-radius: 0;
+}
+
+.cell:nth-child(6n + 7) {
+  margin-left: 8px;
+}
+
+.cell:nth-child(6n + 12) {
+  margin-right: 8px;
+}
+
+.cell:nth-child(n + 85) {
+  border: none;
+  margin-bottom: 8px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .cell:nth-child(n) {
+    font-size: 1.2em;
+  }
+  .cell:nth-child(n + 7) {
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 768px) {
+  .cell:nth-child(n) {
+    font-size: 0.95em;
+  }
+  .cell:nth-child(n + 7) {
+    font-size: 0.7em;
+  }
+}
+@media (max-width: 624px) {
+  .cell:nth-child(n) {
+    font-size: 0.75em;
+    gap: 5px;
+  }
+  .cell:nth-child(n + 7) {
+    font-size: 0.58em;
+    gap: 0;
+  }
+} /*# sourceMappingURL=template.css.map */

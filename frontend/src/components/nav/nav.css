@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fuzzy+Bubbles:wght@400;700&family=Grape+Nuts&family=Inter:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Neucha&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;600;700&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: #90aa86;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.nav {
+  height: 10vh;
+  width: 100%;
+  z-index: 1;
+}
+.nav .ul {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: row;
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+select {
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .nav .ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  select {
+    padding: 0.4rem;
+    font-size: 1.12rem;
+  }
+}
+@media (max-width: 768px) {
+  .nav .ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  select {
+    padding: 0.3rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 624px) {
+  .nav .ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  select {
+    padding: 0.25rem;
+    font-size: 0.9rem;
+  }
+} /*# sourceMappingURL=nav.css.map */
